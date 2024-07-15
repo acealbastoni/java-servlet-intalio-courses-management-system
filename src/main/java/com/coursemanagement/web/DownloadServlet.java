@@ -1,4 +1,4 @@
-package com.mycompany.hello;
+package com.coursemanagement.web;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -2,115 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Modules Download Page</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="scripts.js"></script>
+    <title>Main Page</title>
     <style>
-        /* Additional styling for indentation */
-        .sub-module {
-            padding-left: 20px; /* Adjust as needed */
-        }
+        /* Add any styles you need */
     </style>
 </head>
 <body>
-    <header>
-        <h1>Course Modules</h1>
-    </header>
-    <nav>
-        <a href="#java">Java</a>
-        <a href="#javascript">JavaScript</a>
-        <a href="#python">Python</a>
-        <a href="#csharp">C#</a>
-        <a href="#php">PHP</a>
-        <a href="#ruby">Ruby</a>
-        <a href="#swift">Swift</a>
-        <a href="#kotlin">Kotlin</a>
-    </nav>
-    <main>
-        <section id="java">
-            <h2>Java Modules <button onclick="toggleList('javaList')">+</button></h2>
-            <ul id="javaList" style="display: none;">
-                <li class="sub-module"><a href="DownloadServlet?file=java1.pdf">Java Module 1</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=java2.pdf">Java Module 2</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=java3.pdf">Java Module 3</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=java4.pdf">Java Module 4</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=java5.pdf">Java Module 5</a></li>
-            </ul>
-        </section>
-        <section id="javascript">
-            <h2>JavaScript Modules <button onclick="toggleList('javascriptList')">+</button></h2>
-            <ul id="javascriptList" style="display: none;">
-                <li class="sub-module"><a href="DownloadServlet?file=javascript1.pdf">JavaScript Module 1</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=javascript2.pdf">JavaScript Module 2</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=javascript3.pdf">JavaScript Module 3</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=javascript4.pdf">JavaScript Module 4</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=javascript5.pdf">JavaScript Module 5</a></li>
-            </ul>
-        </section>
-        <section id="python">
-            <h2>Python Modules <button onclick="toggleList('pythonList')">+</button></h2>
-            <ul id="pythonList" style="display: none;">
-                <li class="sub-module"><a href="DownloadServlet?file=python1.pdf">Python Module 1</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=python2.pdf">Python Module 2</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=python3.pdf">Python Module 3</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=python4.pdf">Python Module 4</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=python5.pdf">Python Module 5</a></li>
-            </ul>
-        </section>
-        <section id="csharp">
-            <h2>C# Modules <button onclick="toggleList('csharpList')">+</button></h2>
-            <ul id="csharpList" style="display: none;">
-                <li class="sub-module"><a href="DownloadServlet?file=csharp1.pdf">C# Module 1</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=csharp2.pdf">C# Module 2</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=csharp3.pdf">C# Module 3</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=csharp4.pdf">C# Module 4</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=csharp5.pdf">C# Module 5</a></li>
-            </ul>
-        </section>
-        <section id="php">
-            <h2>PHP Modules <button onclick="toggleList('phpList')">+</button></h2>
-            <ul id="phpList" style="display: none;">
-                <li class="sub-module"><a href="DownloadServlet?file=php1.pdf">PHP Module 1</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=php2.pdf">PHP Module 2</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=php3.pdf">PHP Module 3</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=php4.pdf">PHP Module 4</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=php5.pdf">PHP Module 5</a></li>
-            </ul>
-        </section>
-        <section id="ruby">
-            <h2>Ruby Modules <button onclick="toggleList('rubyList')">+</button></h2>
-            <ul id="rubyList" style="display: none;">
-                <li class="sub-module"><a href="DownloadServlet?file=ruby1.pdf">Ruby Module 1</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=ruby2.pdf">Ruby Module 2</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=ruby3.pdf">Ruby Module 3</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=ruby4.pdf">Ruby Module 4</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=ruby5.pdf">Ruby Module 5</a></li>
-            </ul>
-        </section>
-        <section id="swift">
-            <h2>Swift Modules <button onclick="toggleList('swiftList')">+</button></h2>
-            <ul id="swiftList" style="display: none;">
-                <li class="sub-module"><a href="DownloadServlet?file=swift1.pdf">Swift Module 1</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=swift2.pdf">Swift Module 2</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=swift3.pdf">Swift Module 3</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=swift4.pdf">Swift Module 4</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=swift5.pdf">Swift Module 5</a></li>
-            </ul>
-        </section>
-        <section id="kotlin">
-            <h2>Kotlin Modules <button onclick="toggleList('kotlinList')">+</button></h2>
-            <ul id="kotlinList" style="display: none;">
-                <li class="sub-module"><a href="DownloadServlet?file=kotlin1.pdf">Kotlin Module 1</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=kotlin2.pdf">Kotlin Module 2</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=kotlin3.pdf">Kotlin Module 3</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=kotlin4.pdf">Kotlin Module 4</a></li>
-                <li class="sub-module"><a href="DownloadServlet?file=kotlin5.pdf">Kotlin Module 5</a></li>
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Course Modules Download Page</p>
-    </footer>
+    <h1>Welcome to the Course Management System</h1>
+    <p>Are you an admin or a public user?</p>
+    
+    <button id="adminButton">Yes, I'm an admin</button>
+    <button id="publicButton">No, I'm a public user</button>
+
+    <form id="adminForm" action="LoginServlet" method="post" style="display: none;">
+        <input type="hidden" name="role" value="admin">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="Submit">
+    </form>
+
+    <form id="publicForm" action="publicStudents.html" method="post" style="display: none;">
+        <input type="hidden" name="role" value="public">
+        <input type="submit" value="Enter as Public User">
+    </form>
+
+    <script>
+        document.getElementById("adminButton").onclick = function() {
+            document.getElementById("adminForm").style.display = 'block';
+            document.getElementById("adminButton").style.display = 'none';
+            document.getElementById("publicButton").style.display = 'none';
+        }
+
+        document.getElementById("publicButton").onclick = function() {
+            document.getElementById("publicForm").style.display = 'block';
+            document.getElementById("adminButton").style.display = 'none';
+            document.getElementById("publicButton").style.display = 'none';
+        }
+    </script>
 </body>
 </html>

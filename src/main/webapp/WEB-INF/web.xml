@@ -4,23 +4,30 @@
 
 <web-app>
 
-  <display-name>Hello World</display-name>
+	<display-name>Courses Management System</display-name>
 
-  <servlet>
-    <servlet-name>Hello</servlet-name>
-    <servlet-class>com.mycompany.hello.HelloServlet</servlet-class>
-  </servlet>
+	<servlet>
+		<servlet-name>Hello</servlet-name>
+		<servlet-class>com.mycompany.hello.HelloServlet</servlet-class>
+	</servlet>
 
-  <servlet>
-    <servlet-name>DownloadServlet</servlet-name>
-    <servlet-class>com.mycompany.hello.DownloadServlet</servlet-class>
-  </servlet>
 
-  <servlet-mapping>
-    <servlet-name>Hello</servlet-name>
-    <url-pattern>/hello</url-pattern>
-  </servlet-mapping>
+	<servlet>
+		<servlet-name>DownloadServlet</servlet-name>
+		<servlet-class>com.coursemanagement.web.DownloadServlet</servlet-class>
+	</servlet>
 
- 
 
+
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.coursemanagement.web.LoginServlet</servlet-class>
+	</servlet>
+
+
+	<servlet>
+		<servlet-name>PublicServlet</servlet-name>
+		<servlet-class>com.coursemanagement.web.PublicServlet</servlet-class>
+	</servlet>
+	
 </web-app>

@@ -1,4 +1,4 @@
-package com.mycompany.hello;
+package com.coursemanagement.hello;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
