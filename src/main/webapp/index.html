@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <title>Main Page</title>
     <style>
-        /* Add any styles you need */
+     
     </style>
 </head>
 <body>
     <h1>Welcome to the Course Management System</h1>
     <p>Are you an admin or a public user?</p>
     
-    <button id="adminButton">Yes, I'm an admin</button>
-    <button id="publicButton">No, I'm a public user</button>
+    <button id="adminButton"> Admin ??</button>
+    <form id="publicForm" action="PublicServlet" method="post" >
+        <input type="hidden" name="role" value="public">
+        <input type="submit" value="Enter as Public User">
+    </form>
 
+<br>
     <form id="adminForm" action="LoginServlet" method="post" style="display: none;">
         <input type="hidden" name="role" value="admin">
         <label for="password">Password:</label>
@@ -21,10 +25,7 @@
         <input type="submit" value="Submit">
     </form>
 
-    <form id="publicForm" action="publicStudents.html" method="post" style="display: none;">
-        <input type="hidden" name="role" value="public">
-        <input type="submit" value="Enter as Public User">
-    </form>
+
 
     <script>
         document.getElementById("adminButton").onclick = function() {

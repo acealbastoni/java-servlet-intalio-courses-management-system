@@ -17,7 +17,7 @@ public class LoginServlet extends HttpServlet {
 
         if ("admin".equals(role) && "your_admin_password_here".equals(password)) {
             // Redirect to admin page
-            response.sendRedirect("adminPage.jsp");
+            response.sendRedirect("adminPage.html");
         } else {
             // Redirect to error page or show error message
             response.sendRedirect("error.jsp");
