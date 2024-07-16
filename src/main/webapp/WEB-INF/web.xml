@@ -30,14 +30,12 @@
 		<servlet-class>com.coursemanagement.web.PublicServlet</servlet-class>
 	</servlet>
 	
-	
+		
 	<servlet>
 		<servlet-name>AddCourseServlet</servlet-name>
-		<display-name>AddCourseServlet</display-name>
-		<description></description>
 		<servlet-class>com.coursemanagement.web.AddCourseServlet</servlet-class>
 	</servlet>
-	
+
 
 	<servlet>
 		<servlet-name>FetchModulesServlet</servlet-name>
