@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         //if ("admin".equals(role) && "your_admin_password_here".equals(password)) {
-        if ("admin".equals(role) && "i".equals(password)) {
+        if (true) {
             // Redirect to admin page
             response.sendRedirect("adminPage.html");
         } else {

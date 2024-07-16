@@ -29,6 +29,8 @@
 		<servlet-name>PublicServlet</servlet-name>
 		<servlet-class>com.coursemanagement.web.PublicServlet</servlet-class>
 	</servlet>
+	
+	
 	<servlet>
 		<servlet-name>AddCourseServlet</servlet-name>
 		<display-name>AddCourseServlet</display-name>
@@ -36,5 +38,9 @@
 		<servlet-class>com.coursemanagement.web.AddCourseServlet</servlet-class>
 	</servlet>
 	
-	
+
+	<servlet>
+		<servlet-name>FetchModulesServlet</servlet-name>
+		<servlet-class>com.coursemanagement.web.FetchModulesServlet</servlet-class>
+	</servlet>
 </web-app>
