@@ -92,4 +92,29 @@
 
         // Fetch and display modules on page load
         fetchModules();
+        
+  //████████████████████████████████████████ Add Module Form █████████████████████████████████████████████████████	
+ document.addEventListener("DOMContentLoaded", function() {
+            fetch('getCourses')
+                .then(response => response.json())
+                .then(courses => {
+					alert(courses);
+                    const courseSelect = document.getElementById('courseSelect');
+                    courses.forEach(course => {
+                        const option = document.createElement('option');
+                        option.value = course.id;
+                        option.textContent = course.name;
+                        courseSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching courses:', error));
+        });
+        
+        
+        
+        
+        
+        
+        
+       
     
