@@ -16,7 +16,8 @@ public class PublicServlet extends HttpServlet {
 
         if ("public".equals(role)) {
             // Redirect to public user page
-            response.sendRedirect("publicStudents.html");
+        	response.sendRedirect("student.html");
+        	//response.sendRedirect("publicStudents.html");
         } else {
             // Redirect to error page or show error message
             response.sendRedirect("error.jsp");
