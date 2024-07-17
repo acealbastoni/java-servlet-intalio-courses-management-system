@@ -41,4 +41,14 @@
 		<servlet-name>FetchModulesServlet</servlet-name>
 		<servlet-class>com.coursemanagement.web.FetchModulesServlet</servlet-class>
 	</servlet>
+	
+	
+
+		<servlet>
+		<servlet-name>ModulesServlet</servlet-name>
+		<servlet-class>com.coursemanagement.web.ModulesServlet</servlet-class>
+	</servlet>
+	
+	
+	
 </web-app>

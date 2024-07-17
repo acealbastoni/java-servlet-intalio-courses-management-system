@@ -1,8 +1,6 @@
 package com.coursemanagement.dao;
 
 
-import com.coursemanagement.model.Module;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,9 +9,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.coursemanagement.model.Module;
+
 public class ModuleDAO {
     // JDBC connection details
-//    private static final String JDBC_DB_URL = "jdbc:mysql://localhost:3306/course_module_db?useSSL=false";
     private static final String JDBC_DB_URL = "jdbc:mysql://localhost:3306/course_module_db?useSSL=false&serverTimezone=UTC";
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASSWORD = "root";
@@ -85,6 +84,14 @@ public class ModuleDAO {
         return modules;
     }
 
+    
+
+    
+    
+    
+    
+    
+    
     // Method to handle SQLException
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
@@ -101,4 +108,31 @@ public class ModuleDAO {
             }
         }
     }
+//	
+//	public void addCourse(Module module) {
+//		try (Connection connection = getConnection();
+//				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_MODULE_SQL)) {
+//
+//			preparedStatement.setString(1, module.getName());
+//			preparedStatement.setString(2, module.getDescription());
+//			preparedStatement.executeUpdate();
+//		} catch (SQLException e) {
+//			printSQLException(e);
+//		}
+//	}
+//    
+
+	 private static final String INSERT_MODULE_SQL = "INSERT INTO modules (moduleName, courseID, pdfFileName) VALUES (?, ?, ?)";
+
+	    public void addModule(Module module) {
+	        try (Connection connection =getConnection();// DatabaseUtil.getConnection();
+	             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_MODULE_SQL)) {
+	            preparedStatement.setString(1, module.getModuleName());
+	            preparedStatement.setInt(2, module.getCourseID());
+	            preparedStatement.setString(3, module.getPdfFileName());
+	            preparedStatement.executeUpdate();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
 }

@@ -1,120 +1,139 @@
-          async function fetchModules() {
-            try {
+async function fetchModules() {
+	try {
                 const response = await fetch('FetchModulesServlet');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch modules');
-                }
-                const data = await response.json();
-                console.log('Fetched modules:', data);
-                //alert(JSON.stringify(data, null, 2)); 
+		if (!response.ok) {
+			throw new Error('Failed to fetch modules');
+		}
+		const data = await response.json();
+		console.log('Fetched modules:', data);
 
-                const transformedData = transformData(data);
-                console.log('Transformed Data:', transformedData); 
-                //alert(JSON.stringify(transformedData, null, 2)); 
+		// Transform data after fetching courses
+		const transformedData = await transformData(data);
+		console.log('Transformed Data:', transformedData);
 
-                displayCourses(transformedData); // Display courses and modules on the page
-            } catch (error) {
-                console.error('Error fetching modules:', error);
-            }
-        }
+		displayCourses(transformedData); // Display courses and modules on the page
+	} catch (error) {
+		console.error('Error fetching modules:', error);
+	}
+}
 
-        function transformData(data) {
-            const courseMap = {
-                1: "Java",
-                2: "JavaScript",
-                3: "Python",
-                4: "C#"
-            };
+async function transformData(data) {
+	// Initialize courseMap
+	const courseMap = {};
 
-            const moduleMap = {};
+	try {
+		// Fetch courses
+		const response = await fetch('getCourses');
+		if (!response.ok) {
+			throw new Error('Failed to fetch courses');
+		}
+		const courses = await response.json();
 
-            data.forEach(item => {
-                const courseName = courseMap[item.courseID];
-                if (!moduleMap[courseName]) {
-                    moduleMap[courseName] = {};
-                }
+		// Populate courseMap
+		courses.forEach(course => {
+			courseMap[course.id] = course.name;
+		});
 
-                if (!moduleMap[courseName][item.moduleName]) {
-                    moduleMap[courseName][item.moduleName] = [];
-                }
+		console.log(courseMap);
 
-                moduleMap[courseName][item.moduleName].push(item.pdfFileName);
-            });
+		// Continue with transforming data
+		const moduleMap = {};
 
-            const result = Object.keys(moduleMap).map(courseName => {
-                return {
-                    courseName,
-                    modules: Object.keys(moduleMap[courseName]).map(moduleName => {
-                        return {
-                            moduleName,
-                            pdfFiles: moduleMap[courseName][moduleName]
-                        };
-                    })
-                };
-            });
+		data.forEach(item => {
+			const courseName = courseMap[item.courseID];
+			if (!moduleMap[courseName]) {
+				moduleMap[courseName] = {};
+			}
 
-            return result;
-        }
+			if (!moduleMap[courseName][item.moduleName]) {
+				moduleMap[courseName][item.moduleName] = [];
+			}
 
-        function displayCourses(courses) {
-            const coursesContainer = document.querySelector('.courses-container');
-            coursesContainer.innerHTML = '<h2>Existing Courses and Modules</h2>'; // Clear existing content
+			moduleMap[courseName][item.moduleName].push(item.pdfFileName);
+		});
 
-            courses.forEach(course => {
-                const courseDiv = document.createElement('div');
-                courseDiv.classList.add('course');
+		const result = Object.keys(moduleMap).map(courseName => {
+			return {
+				courseName,
+				modules: Object.keys(moduleMap[courseName]).map(moduleName => {
+					return {
+						moduleName,
+						pdfFiles: moduleMap[courseName][moduleName]
+					};
+				})
+			};
+		});
 
-                const courseTitle = document.createElement('h3');
-                courseTitle.textContent = course.courseName;
-                courseDiv.appendChild(courseTitle);
+		return result;
 
-                const courseDescription = document.createElement('p');
-                courseDescription.textContent = `Description of ${course.courseName}`;
-                courseDiv.appendChild(courseDescription);
+	} catch (error) {
+		console.error('Error fetching courses:', error);
+		return [];
+	}
+}
 
-                const modulesDiv = document.createElement('div');
-                modulesDiv.classList.add('modules');
+// Call fetchModules to start the process
+fetchModules();
 
-                const modulesTitle = document.createElement('h4');
-                modulesTitle.textContent = 'Modules';
-                modulesDiv.appendChild(modulesTitle);
+//█████████████████████ █████████████████████████████ █████████████████████████████ 
+function displayCourses(courses) {
+	const coursesContainer = document.querySelector('.courses-container');
+	coursesContainer.innerHTML = '<h2>Existing Courses and Modules</h2>'; // Clear existing content
 
-                course.modules.forEach(module => {
-                    const moduleParagraph = document.createElement('p');
-                    moduleParagraph.textContent = `${module.moduleName}: ${module.pdfFiles.join(', ')}`;
-                    modulesDiv.appendChild(moduleParagraph);
-                });
+	courses.forEach(course => {
+		const courseDiv = document.createElement('div');
+		courseDiv.classList.add('course');
 
-                courseDiv.appendChild(modulesDiv);
-                coursesContainer.appendChild(courseDiv);
-            });
-        }
+		const courseTitle = document.createElement('h3');
+		courseTitle.textContent = course.courseName;
+		courseDiv.appendChild(courseTitle);
 
-        // Fetch and display modules on page load
-        fetchModules();
-        
-  //████████████████████████████████████████ Add Module Form █████████████████████████████████████████████████████	
- document.addEventListener("DOMContentLoaded", function() {
-            fetch('getCourses')
-                .then(response => response.json())
-                .then(courses => {
-					alert(courses);
-                    const courseSelect = document.getElementById('courseSelect');
-                    courses.forEach(course => {
-                        const option = document.createElement('option');
-                        option.value = course.id;
-                        option.textContent = course.name;
-                        courseSelect.appendChild(option);
-                    });
-                })
-                .catch(error => console.error('Error fetching courses:', error));
-        });
-        
-        
-        
-        
-        
-        
-        
-       
-    
+		const courseDescription = document.createElement('p');
+		courseDescription.textContent = `Description of ${course.courseName}`;
+		courseDiv.appendChild(courseDescription);
+
+		const modulesDiv = document.createElement('div');
+		modulesDiv.classList.add('modules');
+
+		const modulesTitle = document.createElement('h4');
+		modulesTitle.textContent = 'Modules';
+		modulesDiv.appendChild(modulesTitle);
+
+		course.modules.forEach(module => {
+			const moduleParagraph = document.createElement('p');
+			moduleParagraph.textContent = `${module.moduleName}: ${module.pdfFiles.join(', ')}`;
+			modulesDiv.appendChild(moduleParagraph);
+		});
+
+		courseDiv.appendChild(modulesDiv);
+		coursesContainer.appendChild(courseDiv);
+	});
+}
+
+// Fetch and display modules on page load
+fetchModules();
+
+//████████████████████████████████████████ Add Module Form █████████████████████████████████████████████████████	
+document.addEventListener("DOMContentLoaded", function() {
+	fetch('getCourses')
+		.then(response => response.json())
+		.then(courses => {
+			//alert(courses);
+			const courseSelect = document.getElementById('courseSelect');
+			courses.forEach(course => {
+				const option = document.createElement('option');
+				option.value = course.id;
+				option.textContent = course.name;
+				courseSelect.appendChild(option);
+			});
+		})
+		.catch(error => console.error('Error fetching courses:', error));
+});
+
+
+
+
+
+
+
+
