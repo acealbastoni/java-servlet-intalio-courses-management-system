@@ -1,41 +1,41 @@
 package com.coursemanagement.model;
 
 public class Course {
-    private int id;
-    private String name;
-    private String description;
+	private int id;
+	private String name;
+	private String description;
 
-    public Course() {
-        // Default constructor
-    }
+	public Course() {
 
-    public Course(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
+	}
 
-    // Getters and setters
-    public int getId() {
-        return id;
-    }
+	public Course(String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	// Getters and setters
+	public int getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }

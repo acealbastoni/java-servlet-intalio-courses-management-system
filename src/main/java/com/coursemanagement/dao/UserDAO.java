@@ -85,15 +85,15 @@ public class UserDAO {
     }
 
     public static void main(String[] args) {
-        UserDAO userDAO = new UserDAO();
-        try (Connection connection = userDAO.getConnection()) {
-            if (connection != null) {
-                System.out.println("Connection successful!");
-            } else {
-                System.out.println("Failed to make connection!");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        UserDAO userDAO = new UserDAO();
+//        try (Connection connection = userDAO.getConnection()) {
+//            if (connection != null) {
+//                System.out.println("Connection successful!");
+//            } else {
+//                System.out.println("Failed to make connection!");
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 }
