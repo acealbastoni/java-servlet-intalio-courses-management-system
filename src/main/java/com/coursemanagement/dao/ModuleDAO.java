@@ -9,6 +9,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.coursemanagement.model.Course;
+
+
+
 import com.coursemanagement.model.Module;
 
 public class ModuleDAO {
@@ -76,6 +91,7 @@ public class ModuleDAO {
                 module.setModuleName(resultSet.getString("moduleName"));
                 module.setCourseID(resultSet.getInt("courseID"));
                 module.setPdfFileName(resultSet.getString("pdfFileName")); // If storing PDF file names in database
+                module.setModuleDescription(resultSet.getString("moduleDescription"));
                 modules.add(module);
             }
         } catch (SQLException e) {
@@ -136,4 +152,47 @@ public class ModuleDAO {
 	            e.printStackTrace();
 	        }
 	    }
+
+
+
+
+
+	    private static final String SELECT_MODULE_BY_ID = "SELECT moduleID, moduleName, moduleDescription, pdfFileName FROM modules WHERE moduleID = ?";
+		public Module getModuleById(int parseInt) {
+	      Module module = null;
+	      try (Connection connection = getConnection();
+	           PreparedStatement preparedStatement = connection.prepareStatement(SELECT_MODULE_BY_ID)) {
+	          preparedStatement.setInt(1, parseInt);
+	          ResultSet rs = preparedStatement.executeQuery();
+	          if (rs.next()) {
+	              Integer moduleID = rs.getInt("moduleID");
+	              String courseDescription = rs.getString("moduleName");
+	              String moduleDescription = rs.getString("moduleDescription");
+	              String pdfFileName = rs.getString("pdfFileName");
+	              
+	              module = new Module(moduleID, courseDescription, moduleDescription,pdfFileName );
+	          }
+	      } catch (SQLException e) {
+	          printSQLException(e);
+	      }
+	      return module;
+			
+		}
+		
+//	    public Course selectCourse(int id) {
+//      Course course = null;
+//      try (Connection connection = getConnection();
+//           PreparedStatement preparedStatement = connection.prepareStatement(SELECT_COURSE_BY_ID)) {
+//          preparedStatement.setInt(1, id);
+//          ResultSet rs = preparedStatement.executeQuery();
+//          if (rs.next()) {
+//              String name = rs.getString("name");
+//              String courseDescription = rs.getString("courseDescription");
+//              course = new Course(id, name, courseDescription);
+//          }
+//      } catch (SQLException e) {
+//          printSQLException(e);
+//      }
+//      return course;
+//  }
 }

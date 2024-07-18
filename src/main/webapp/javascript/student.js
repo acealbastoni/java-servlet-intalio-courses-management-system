@@ -1,6 +1,6 @@
 async function fetchModules() {
 	try {
-                const response = await fetch('FetchModulesServlet');
+		const response = await fetch('FetchModulesServlet');
 		if (!response.ok) {
 			throw new Error('Failed to fetch modules');
 		}
@@ -49,7 +49,10 @@ async function transformData(data) {
 				moduleMap[courseName][item.moduleName] = [];
 			}
 
-			moduleMap[courseName][item.moduleName].push(item.pdfFileName);
+			moduleMap[courseName][item.moduleName].push({
+				pdfFileName: item.pdfFileName,
+				moduleID: item.moduleID
+			});
 		});
 
 		const result = Object.keys(moduleMap).map(courseName => {
@@ -72,6 +75,8 @@ async function transformData(data) {
 	}
 }
 
+
+//█████████████████████ █████████████████████████████ █████████████████████████████ 
 // Call fetchModules to start the process
 fetchModules();
 
@@ -101,7 +106,30 @@ function displayCourses(courses) {
 
 		course.modules.forEach(module => {
 			const moduleParagraph = document.createElement('p');
-			moduleParagraph.textContent = `${module.moduleName}: ${module.pdfFiles.join(', ')}`;
+			moduleParagraph.textContent = `${module.moduleName}: `;
+			module.pdfFiles.forEach((pdfFile, index) => {
+				const pdfLink = document.createElement('a');
+				pdfLink.href = `uploads/${pdfFile.pdfFileName}`;
+				pdfLink.textContent = pdfFile.pdfFileName;
+				pdfLink.addEventListener('click', function(event) {
+					event.preventDefault(); // Prevent the default action of the link
+					alert(`Module ID: ${pdfFile.moduleID}`); // Alert the module ID
+					
+					const link = document.createElement('a');
+					link.href = `DownloadModuleServlet?moduleID=${pdfFile.moduleID}`;
+					link.download = pdfFile.pdfFileName; // Set the download attribute with the file name
+					document.body.appendChild(link);
+					link.click();
+					document.body.removeChild(link);
+					
+					
+				});
+				moduleParagraph.appendChild(pdfLink);
+
+				if (index < module.pdfFiles.length - 1) {
+					moduleParagraph.appendChild(document.createTextNode(', '));
+				}
+			});
 			modulesDiv.appendChild(moduleParagraph);
 		});
 
@@ -110,6 +138,8 @@ function displayCourses(courses) {
 	});
 }
 
+
+//█████████████████████ █████████████████████████████ █████████████████████████████ 
 // Fetch and display modules on page load
 fetchModules();
 

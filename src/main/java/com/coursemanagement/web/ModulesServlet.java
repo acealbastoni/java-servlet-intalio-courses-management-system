@@ -49,7 +49,7 @@ public class ModulesServlet extends HttpServlet {
     }
     
     
-     @Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Check if the request is multipart
@@ -84,8 +84,8 @@ public class ModulesServlet extends HttpServlet {
                         InputStream fileContent = item.getInputStream();
 
                         // Save the file to the desired location
-                        String uploadDir = getServletContext().getRealPath("/") + "uploads/";
-                        System.out.println(uploadDir);
+                        //String uploadDir = getServletContext().getRealPath("/uploads");
+                        String uploadDir =  "C:\\AcelAlBastoniIntalioTaskMohamedAbdelhamid";
                         File uploads = new File(uploadDir);
                         if (!uploads.exists()) {
                             uploads.mkdir();
@@ -131,8 +131,7 @@ public class ModulesServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while processing the request.");
         }
     }
-    
-    
+
     
     
 }

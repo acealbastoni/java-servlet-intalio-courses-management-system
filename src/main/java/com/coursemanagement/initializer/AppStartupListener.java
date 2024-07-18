@@ -12,6 +12,7 @@ public class AppStartupListener implements ServletContextListener {
 
         // Initialize database
         Initializer initializer = new Initializer();
+        Initializer.createDirectoryIfNotExists("C:\\AcelAlBastoniIntalioTaskMohamedAbdelhamid");
         initializer.initializeDatabase();
     }
 

@@ -17,7 +17,16 @@ public class Module {
         this.courseID = courseID;
     }
 
-    public int getModuleID() {
+ 
+
+	public Module(Integer moduleID, String moduleName, String moduleDescription, String pdfFileName) {
+		this.moduleID = moduleID;
+		this.moduleName = moduleName;
+		this.moduleDescription = moduleDescription;
+		this.pdfFileName = pdfFileName;
+	}
+
+	public int getModuleID() {
         return moduleID;
     }
 
