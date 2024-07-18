@@ -1,55 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Main Page</title>
+	<link rel="stylesheet" type="text/css" href="css/index3.css">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Courses</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+	<header class="header">
+		<div class="container">
+			<h1>Intalio Course Management System</h1>
+			<nav>
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="student.html">Courses</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="https://www.linkedin.com/in/mohamed-abd-elhameed-108342a4/" target="_blank">Contact</a>
+					</li>
+				</ul>
+			</nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome to the Course Management System</h1>
-            <p>Manage your courses effectively and efficiently.</p>
-            <button id="adminButton" class="btn">Admin</button>
-            <form id="publicForm" action="PublicServlet" method="post">
-                <input type="hidden" name="role" value="public">
-                <input type="submit" value="Welcome As A Public User" class="btn">
-            </form>
-        </div>
-    </section>
+		</div>
+	</header>
+	<div class="login-container">
+		<section class="login-section" id="adminSection">
+			<div class="form-container">
+				<h3>Admin Login</h3>
+				<form id="adminForm" action="LoginServlet" method="post">
+					<div class="input-group">
+						<label for="adminUsername">Username:</label>
+						<input type="text" id="adminUsername" name="username" required>
+					</div>
+					<div class="input-group">
+						<label for="adminPassword">Password:</label>
+						<input type="password" id="adminPassword" name="password" required>
+					</div>
+					<div class="input-group">
+						<label>Role:</label>
+						<ul style="list-style: none; padding: 0; margin: 0; display: inline-flex;">
+							<li>
+								<label for="roleAdmin">Admin &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								<input type="radio" id="roleAdmin" name="role" value="admin" required>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</li>
+							<li>
+								<label for="roleStudent">Student</label>
+								<input type="radio" id="roleStudent" name="role" value="student" required>
+							</li>
+						</ul>
+					</div>
+					<input type="submit" value="Login" class="btn">
+				</form>
+			</div>
+		</section>
+	</div>
+	<footer class="footer">
+		<div class="container">
+			<p>&copy; 2024 Course Management System. All rights reserved.</p>
+		</div>
+	</footer>
+	<script>
+		// JavaScript to handle form visibility based on radio button selection
+		const loginOptions = document.getElementsByName("loginOption");
+		const adminSection = document.getElementById("adminSection");
+		const studentSection = document.getElementById("studentSection");
 
-    <section id="adminSection" style="display: none;">
-        <div class="form-container">
-            <form id="adminForm" action="LoginServlet" method="post">
-                <input type="hidden" name="role" value="admin">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <input type="submit" value="Submit" class="btn">
-            </form>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Course Management System. All rights reserved.</p>
-    </footer>
-
-    <script>
-        document.getElementById("adminButton").onclick = function() {
-            document.getElementById("adminSection").style.display = 'block';
-            document.getElementById("adminButton").style.display = 'none';
-        }
-    </script>
+		loginOptions.forEach(option => {
+			option.addEventListener('change', function () {
+				if (this.value === "admin") {
+					adminSection.classList.add('show');
+					studentSection.classList.remove('show');
+				} else if (this.value === "student") {
+					studentSection.classList.add('show');
+					adminSection.classList.remove('show');
+				}
+			});
+		});
+	</script>
 </body>
+
 </html>
