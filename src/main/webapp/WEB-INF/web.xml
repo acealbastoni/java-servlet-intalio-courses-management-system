@@ -7,7 +7,7 @@
 	<display-name>Courses Management System</display-name>
 
 	<servlet>
-		<servlet-name>Hello</servlet-name>
+		<servlet-name>hello</servlet-name>
 		<servlet-class>com.mycompany.hello.HelloServlet</servlet-class>
 	</servlet>
 

@@ -122,14 +122,15 @@ public class ModuleDAO {
 //	}
 //    
 
-	 private static final String INSERT_MODULE_SQL = "INSERT INTO modules (moduleName, courseID, pdfFileName) VALUES (?, ?, ?)";
+	 private static final String INSERT_MODULE_SQL = "INSERT INTO modules (moduleName, courseID, moduleDescription, pdfFileName) VALUES (?, ?, ?, ?)";
 
 	    public void addModule(Module module) {
 	        try (Connection connection =getConnection();// DatabaseUtil.getConnection();
 	             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_MODULE_SQL)) {
 	            preparedStatement.setString(1, module.getModuleName());
 	            preparedStatement.setInt(2, module.getCourseID());
-	            preparedStatement.setString(3, module.getPdfFileName());
+	            preparedStatement.setString(3, module.getModuleDescription());
+	            preparedStatement.setString(4, module.getPdfFileName());
 	            preparedStatement.executeUpdate();
 	        } catch (SQLException e) {
 	            e.printStackTrace();

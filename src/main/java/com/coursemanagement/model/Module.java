@@ -4,6 +4,7 @@ public class Module {
     private int moduleID;
     private String moduleName;
     private int courseID;
+    private String  moduleDescription;
     private String pdfFileName; // Optional, if storing PDF file names in the database
 
     // Constructors, getters, setters (based on your requirements)
@@ -40,6 +41,14 @@ public class Module {
         this.courseID = courseID;
     }
 
+    public String getModuleDescription() {
+		return moduleDescription;
+	}
+
+	public void setModuleDescription(String moduleDescription) {
+		this.moduleDescription = moduleDescription;
+	}
+
     public String getPdfFileName() {
         return pdfFileName;
     }
@@ -47,4 +56,8 @@ public class Module {
     public void setPdfFileName(String pdfFileName) {
         this.pdfFileName = pdfFileName;
     }
+
+	
+
+	
 }

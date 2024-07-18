@@ -57,7 +57,7 @@
 
 		<div class="form-container">
 			<h2>Add New Module</h2>
-			<form id="addModuleForm" action="ModulesServlet" method="post">
+			<form id="addModuleForm" action="ModulesServlet" method="post" enctype="multipart/form-data">
 				<label for="courseSelect">Select Course:</label>
 				<select id="courseSelect" name="courseId" required>
 					<!-- Options will be dynamically populated -->
@@ -66,9 +66,12 @@
 				<input type="text" id="moduleName" name="moduleName" required>
 				<label for="moduleDescription">Module Description:</label>
 				<textarea id="moduleDescription" name="moduleDescription" required></textarea>
+				<label for="moduleFile">Upload Module PDF:</label>
+				<input type="file" id="moduleFile" name="moduleFile" accept="application/pdf" required>
 				<input type="submit" value="Add Module">
 			</form>
 		</div>
+
 	</div>
 
 	<div class="right-panel">
