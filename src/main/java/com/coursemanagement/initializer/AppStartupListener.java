@@ -3,6 +3,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+import com.coursemanagement.utilities.DBConnection;
+
 @WebListener
 public class AppStartupListener implements ServletContextListener {
 
@@ -11,9 +13,11 @@ public class AppStartupListener implements ServletContextListener {
         System.out.println("Application started!");
 
         // Initialize database
+    	DBConnection DBConnection = new DBConnection();
         Initializer initializer = new Initializer();
-        Initializer.createDirectoryIfNotExists("C:\\AcelAlBastoniIntalioTaskMohamedAbdelhamid");
+        Initializer.createDirectoryIfNotExists(DBConnection.UPLOAD_FILES_DIRECTORY);
         initializer.initializeDatabase();
+        
     }
 
     @Override

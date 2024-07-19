@@ -21,6 +21,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.coursemanagement.dao.ModuleDAO;
 import com.coursemanagement.model.Module;
+import com.coursemanagement.utilities.DBConnection;
 import com.google.gson.Gson;
 @WebServlet("/ModulesServlet")
 public class ModulesServlet extends HttpServlet {
@@ -85,7 +86,7 @@ public class ModulesServlet extends HttpServlet {
 
                         // Save the file to the desired location
                         //String uploadDir = getServletContext().getRealPath("/uploads");
-                        String uploadDir =  "C:\\AcelAlBastoniIntalioTaskMohamedAbdelhamid";
+                        String uploadDir =  DBConnection.UPLOAD_FILES_DIRECTORY;
                         File uploads = new File(uploadDir);
                         if (!uploads.exists()) {
                             uploads.mkdir();

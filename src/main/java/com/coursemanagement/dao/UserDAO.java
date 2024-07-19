@@ -1,71 +1,34 @@
 package com.coursemanagement.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import com.coursemanagement.model.User;
+import com.coursemanagement.utilities.DBConnection;
 
 public class UserDAO {
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/";
-    private static final String JDBC_DB_URL = "jdbc:mysql://localhost:3306/course_module_db?useSSL=false";
-    private static final String JDBC_USER = "root";
-    private static final String JDBC_PASSWORD = "root";
 
-    public UserDAO() {
-        try (Connection connection = getInitialConnection()) {
-            // Create the database if it doesn't exist
-            String createDatabaseSQL = "CREATE DATABASE IF NOT EXISTS course_module_db";
-            connection.createStatement().execute(createDatabaseSQL);
+    public User getUserByUsername(String username) {
+        User user = null;
+        String query = "SELECT * FROM users WHERE username = ?";
+        
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                user = new User();
+                user.setId(rs.getInt("id"));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setRole(rs.getString("role"));
+            }
         } catch (SQLException e) {
             printSQLException(e);
         }
-
-        try (Connection connection = getConnection()) {
-            // Create courses table if it doesn't exist
-            String createTableSQL = "CREATE TABLE IF NOT EXISTS courses ("
-                    + "id INT AUTO_INCREMENT PRIMARY KEY, "
-                    + "name VARCHAR(255) NOT NULL, "
-                    + "description VARCHAR(255) NOT NULL)";
-            connection.createStatement().execute(createTableSQL);
-        } catch (SQLException e) {
-            printSQLException(e);
-        }
-    }
-
-    protected Connection getInitialConnection() {
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return connection;
-    }
-
-    protected Connection getConnection() {
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(JDBC_DB_URL, JDBC_USER, JDBC_PASSWORD);
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return connection;
-    }
-
-    public void addCourse(String name, String description) {
-        String insertSQL = "INSERT INTO courses (name, description) VALUES (?, ?)";
-
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, description);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            printSQLException(e);
-        }
+        return user;
     }
 
     private void printSQLException(SQLException ex) {
@@ -82,18 +45,5 @@ public class UserDAO {
                 }
             }
         }
-    }
-
-    public static void main(String[] args) {
-//        UserDAO userDAO = new UserDAO();
-//        try (Connection connection = userDAO.getConnection()) {
-//            if (connection != null) {
-//                System.out.println("Connection successful!");
-//            } else {
-//                System.out.println("Failed to make connection!");
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
     }
 }
