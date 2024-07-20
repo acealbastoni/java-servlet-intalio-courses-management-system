@@ -1,68 +1,50 @@
 package com.coursemanagement.model;
 
 public class Module {
-    private int moduleID;
-    private String moduleName;
-    private int courseID;
-    private String  moduleDescription;
-    private String pdfFileName; 
-    private String fileGuid; 
-    private String courseName; 
-    // Constructors, getters, setters (based on your requirements)
-    public Module() {
-    }
+	private int moduleID;
+	private String moduleName;
+	private int courseID;
+	private String moduleDescription;
+	private String pdfFileName;
+	private String fileGuid;
+	private String courseName;
 
-//    public Module(int moduleID, String moduleName, int courseID) {
-//        this.moduleID = moduleID;
-//        this.moduleName = moduleName;
-//        this.courseID = courseID;
-//    }
-//
-// 
-//
-//	public Module(Integer moduleID, String moduleName, String moduleDescription, String pdfFileName) {
-//		this.moduleID = moduleID;
-//		this.moduleName = moduleName;
-//		this.moduleDescription = moduleDescription;
-//		this.pdfFileName = pdfFileName;
-//	}
+	public Module() {
+	}
 
-	
+	public Module(int moduleID, String moduleName, String moduleDescription, String pdfFileName, String fileGuid) {
+		this.moduleID = moduleID;
+		this.moduleName = moduleName;
+		this.moduleDescription = moduleDescription;
+		this.pdfFileName = pdfFileName;
+		this.fileGuid = fileGuid;
+	}
 
-    public Module(int moduleID, String moduleName, String moduleDescription, String pdfFileName, String fileGuid) {
-        this.moduleID = moduleID;
-        this.moduleName = moduleName;
-        this.moduleDescription = moduleDescription;
-        this.pdfFileName = pdfFileName;
-        this.fileGuid = fileGuid;
-    }
-	
-	
 	public int getModuleID() {
-        return moduleID;
-    }
+		return moduleID;
+	}
 
-    public void setModuleID(int moduleID) {
-        this.moduleID = moduleID;
-    }
+	public void setModuleID(int moduleID) {
+		this.moduleID = moduleID;
+	}
 
-    public String getModuleName() {
-        return moduleName;
-    }
+	public String getModuleName() {
+		return moduleName;
+	}
 
-    public void setModuleName(String moduleName) {
-        this.moduleName = moduleName;
-    }
+	public void setModuleName(String moduleName) {
+		this.moduleName = moduleName;
+	}
 
-    public int getCourseID() {
-        return courseID;
-    }
+	public int getCourseID() {
+		return courseID;
+	}
 
-    public void setCourseID(int courseID) {
-        this.courseID = courseID;
-    }
+	public void setCourseID(int courseID) {
+		this.courseID = courseID;
+	}
 
-    public String getModuleDescription() {
+	public String getModuleDescription() {
 		return moduleDescription;
 	}
 
@@ -70,13 +52,13 @@ public class Module {
 		this.moduleDescription = moduleDescription;
 	}
 
-    public String getPdfFileName() {
-        return pdfFileName;
-    }
+	public String getPdfFileName() {
+		return pdfFileName;
+	}
 
-    public void setPdfFileName(String pdfFileName) {
-        this.pdfFileName = pdfFileName;
-    }
+	public void setPdfFileName(String pdfFileName) {
+		this.pdfFileName = pdfFileName;
+	}
 
 	public String getFileGuid() {
 		return fileGuid;
@@ -86,13 +68,12 @@ public class Module {
 		this.fileGuid = fileGuid;
 	}
 
-	 public String getCourseName() {
-	        return courseName;
-	    }
+	public String getCourseName() {
+		return courseName;
+	}
 
-	    public void setCourseName(String courseName) {
-	        this.courseName = courseName;
-	    }
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
 
-	
 }

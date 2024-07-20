@@ -29,7 +29,7 @@ public class ModuleDAO {
 				module.setPdfFileName(resultSet.getString("pdfFileName"));
 				module.setModuleDescription(resultSet.getString("moduleDescription"));
 				module.setFileGuid(resultSet.getString("fileGuid"));
-				
+
 				modules.add(module);
 			}
 		} catch (SQLException e) {
@@ -91,14 +91,13 @@ public class ModuleDAO {
 
 	public static void main(String[] args) {
 		ModuleDAO moduleDAO = new ModuleDAO();
-		Module module =moduleDAO.getModuleById(1); //moduleDAO.getAllModules();
+		Module module = moduleDAO.getModuleById(1); // moduleDAO.getAllModules();
 
-	
-			System.out.println("Module ID: " + module.getModuleID());
-			System.out.println("Module Name: " + module.getModuleName());
-			System.out.println("Course ID: " + module.getCourseID());
-			System.out.println("PDF File Name: " + module.getPdfFileName());
-			System.out.println();
-	
+		System.out.println("Module ID: " + module.getModuleID());
+		System.out.println("Module Name: " + module.getModuleName());
+		System.out.println("Course ID: " + module.getCourseID());
+		System.out.println("PDF File Name: " + module.getPdfFileName());
+		System.out.println();
+
 	}
 }
