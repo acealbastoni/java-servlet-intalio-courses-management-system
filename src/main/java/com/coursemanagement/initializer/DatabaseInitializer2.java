@@ -91,8 +91,14 @@ public class DatabaseInitializer2 {
 	        "C# Learning Course for intalio Task", "C# Learning Course for intalio Task"
 	    };
 	    String[] fileGuids = {
-	        "guid1", "guid2", "guid3", "guid4", 
-	        "guid5", "guid6", "guid7", "guid8"
+	        "a1c351e7-17c9-4e70-9b1e-b0f8fdb1794b",
+			"0f512340-cf19-42ad-9c3e-43ebfc792dde",
+			"ea73fa08-8de0-43ba-bc93-1f4958648220",
+			"2ba569ef-e6d0-48bd-890c-19fe20efbaff", 
+	        "8126d7f2-cb61-44ee-ac78-264bbc8a3aa0",
+			"15576944-7b55-46ba-b5b2-50c39d815ef4",
+			"dc175ac1-7142-43d1-9892-2b6dd1297984",
+			"16cbabe7-2851-49c1-9a46-1addfc1c5348"
 	    };
 
 	    try (Statement statement = connection.createStatement()) {

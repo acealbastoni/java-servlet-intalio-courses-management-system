@@ -7,7 +7,7 @@ public class Module {
     private String  moduleDescription;
     private String pdfFileName; 
     private String fileGuid; 
-
+    private String courseName; 
     // Constructors, getters, setters (based on your requirements)
     public Module() {
     }
@@ -86,7 +86,13 @@ public class Module {
 		this.fileGuid = fileGuid;
 	}
 
-	
+	 public String getCourseName() {
+	        return courseName;
+	    }
+
+	    public void setCourseName(String courseName) {
+	        this.courseName = courseName;
+	    }
 
 	
 }

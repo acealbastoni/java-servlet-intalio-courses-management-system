@@ -1,9 +1,9 @@
 package com.coursemanagement.web;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,57 +11,45 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.coursemanagement.dao.CourseDAO;
 import com.coursemanagement.dao.ModuleDAO;
+import com.coursemanagement.model.Course;
 import com.coursemanagement.model.Module;
-import com.coursemanagement.utilities.DBConnection;
+import com.fasterxml.jackson.databind.ObjectMapper; // For JSON conversion
 
 @WebServlet("/DownloadModuleServlet")
 public class DownloadModuleServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private ModuleDAO moduleADO;
-
+    private ModuleDAO moduleDAO;
+    private CourseDAO courseDAO;
+    
     @Override
     public void init() throws ServletException {
-        moduleADO = new ModuleDAO(); 
+        moduleDAO = new ModuleDAO();
+        courseDAO = new CourseDAO();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String moduleID = request.getParameter("moduleID");
-        if (moduleID == null || moduleID.isEmpty()) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Module ID is missing");
-            return;
+        List<Module> modules = moduleDAO.getAllModules();
+        List<Course> courses = courseDAO.getAllCourses();
+
+        // Create a map for course ID to course name
+        Map<Integer, String> courseNameMap = new HashMap<>();
+        for (Course course : courses) {
+            courseNameMap.put(course.getId(), course.getName()); // Assuming Course class has getId() and getName() methods
         }
 
-        try {
-            int moduleIdInt = Integer.parseInt(moduleID);
-            Module module = moduleADO.getModuleById(moduleIdInt);
-            if (module == null) {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Module not found");
-                return;
-            }
-
-            String filePath = DBConnection.UPLOAD_FILES_DIRECTORY + module.getPdfFileName();
-            File file = new File(filePath);
-            if (!file.exists()) {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "File not found");
-                return;
-            }
-
-            response.setContentType("application/pdf");
-            response.setHeader("Content-Disposition", "attachment;filename=" + file.getName());
-
-            try (FileInputStream inStream = new FileInputStream(file);
-                 OutputStream outStream = response.getOutputStream()) {
-
-                byte[] buffer = new byte[4096];
-                int bytesRead;
-
-                while ((bytesRead = inStream.read(buffer)) != -1) {
-                    outStream.write(buffer, 0, bytesRead);
-                }
-            }
-        } catch (NumberFormatException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid module ID");
+        // Set course names in modules
+        for (Module module : modules) {
+            module.setCourseName(courseNameMap.get(module.getCourseID()));
         }
+
+        // Convert list of modules to JSON
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(modules);
+
+        response.setContentType("application/json");
+        response.getWriter().write(json);
     }
 }

@@ -55,7 +55,10 @@
 		<servlet-class>com.coursemanagement.web.DownloadModuleServlet</servlet-class>
 	</servlet>
 	
-	
+	<servlet>
+		<servlet-name>DownloadPDF</servlet-name>
+		<servlet-class>com.coursemanagement.web.DownloadPDF</servlet-class>
+	</servlet>
 	
 	
 	
