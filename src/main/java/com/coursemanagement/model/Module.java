@@ -5,27 +5,39 @@ public class Module {
     private String moduleName;
     private int courseID;
     private String  moduleDescription;
-    private String pdfFileName; // Optional, if storing PDF file names in the database
+    private String pdfFileName; 
+    private String fileGuid; 
 
     // Constructors, getters, setters (based on your requirements)
     public Module() {
     }
 
-    public Module(int moduleID, String moduleName, int courseID) {
+//    public Module(int moduleID, String moduleName, int courseID) {
+//        this.moduleID = moduleID;
+//        this.moduleName = moduleName;
+//        this.courseID = courseID;
+//    }
+//
+// 
+//
+//	public Module(Integer moduleID, String moduleName, String moduleDescription, String pdfFileName) {
+//		this.moduleID = moduleID;
+//		this.moduleName = moduleName;
+//		this.moduleDescription = moduleDescription;
+//		this.pdfFileName = pdfFileName;
+//	}
+
+	
+
+    public Module(int moduleID, String moduleName, String moduleDescription, String pdfFileName, String fileGuid) {
         this.moduleID = moduleID;
         this.moduleName = moduleName;
-        this.courseID = courseID;
+        this.moduleDescription = moduleDescription;
+        this.pdfFileName = pdfFileName;
+        this.fileGuid = fileGuid;
     }
-
- 
-
-	public Module(Integer moduleID, String moduleName, String moduleDescription, String pdfFileName) {
-		this.moduleID = moduleID;
-		this.moduleName = moduleName;
-		this.moduleDescription = moduleDescription;
-		this.pdfFileName = pdfFileName;
-	}
-
+	
+	
 	public int getModuleID() {
         return moduleID;
     }
@@ -65,6 +77,14 @@ public class Module {
     public void setPdfFileName(String pdfFileName) {
         this.pdfFileName = pdfFileName;
     }
+
+	public String getFileGuid() {
+		return fileGuid;
+	}
+
+	public void setFileGuid(String fileGuid) {
+		this.fileGuid = fileGuid;
+	}
 
 	
 

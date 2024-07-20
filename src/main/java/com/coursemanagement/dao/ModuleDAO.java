@@ -13,8 +13,8 @@ import com.coursemanagement.utilities.DBConnection;
 public class ModuleDAO {
 
     private static final String SELECT_ALL_MODULES = "SELECT * FROM modules";
-    private static final String INSERT_MODULE_SQL = "INSERT INTO modules (moduleName, courseID, moduleDescription, pdfFileName) VALUES (?, ?, ?, ?)";
-    private static final String SELECT_MODULE_BY_ID = "SELECT moduleID, moduleName, moduleDescription, pdfFileName FROM modules WHERE moduleID = ?";
+    private static final String INSERT_MODULE_SQL = "INSERT INTO modules (courseID, moduleName, moduleDescription, pdfFileName, fileGuid) VALUES (?, ?, ?, ?, ?)";
+    private static final String SELECT_MODULE_BY_ID = "SELECT moduleID, moduleName, moduleDescription, pdfFileName, fileGuid FROM modules WHERE moduleID = ?";
 
     public List<Module> getAllModules() {
         List<Module> modules = new ArrayList<>();
@@ -39,10 +39,13 @@ public class ModuleDAO {
     public void addModule(Module module) {
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_MODULE_SQL)) {
-            preparedStatement.setString(1, module.getModuleName());
-            preparedStatement.setInt(2, module.getCourseID());
+      
+ 
+        	preparedStatement.setInt(1, module.getCourseID());
+            preparedStatement.setString(2, module.getModuleName());
             preparedStatement.setString(3, module.getModuleDescription());
             preparedStatement.setString(4, module.getPdfFileName());
+            preparedStatement.setString(5, module.getFileGuid()); 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -60,8 +63,8 @@ public class ModuleDAO {
                 String moduleName = rs.getString("moduleName");
                 String moduleDescription = rs.getString("moduleDescription");
                 String pdfFileName = rs.getString("pdfFileName");
-
-                module = new Module(moduleID, moduleName, moduleDescription, pdfFileName);
+                String fileGUID =  rs.getString("fileGuid");
+                module = new Module(moduleID, moduleName, moduleDescription, pdfFileName,fileGUID);
             }
         } catch (SQLException e) {
             printSQLException(e);

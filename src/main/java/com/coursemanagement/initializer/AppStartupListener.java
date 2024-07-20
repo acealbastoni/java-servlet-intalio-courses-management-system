@@ -7,16 +7,24 @@ import com.coursemanagement.utilities.DBConnection;
 
 @WebListener
 public class AppStartupListener implements ServletContextListener {
-
+	static {
+	    try {
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+	    } catch (ClassNotFoundException e) {
+	        e.printStackTrace();
+	    }
+	}
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("Application started!");
 
         // Initialize database
-    	DBConnection DBConnection = new DBConnection();
-        Initializer initializer = new Initializer();
-        Initializer.createDirectoryIfNotExists(DBConnection.UPLOAD_FILES_DIRECTORY);
-        initializer.initializeDatabase();
+        //DatabaseInitializer.main(null);
+        DatabaseInitializer2.main(null);
+    	//DBConnection DBConnection = new DBConnection();
+    	//Initializer.createDirectoryIfNotExists(DBConnection.UPLOAD_FILES_DIRECTORY);
+        //Initializer initializer = new Initializer();
+        //initializer.initializeDatabase();
         
     }
 

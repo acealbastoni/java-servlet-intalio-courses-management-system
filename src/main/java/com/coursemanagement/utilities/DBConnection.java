@@ -14,11 +14,9 @@ public class DBConnection {
 	    }
 	}
 
-	private static final String JDBC_DB_URL =   "jdbc:mysql://localhost:3306/course_module_db?useSSL=false&serverTimezone=UTC";
-    //private static final String JDBC_DB_URL = "jdbc:mysql://localhost:3306/course_module_db?useSSL=false";
+	public static final String JDBC_DB_URL =   "jdbc:mysql://localhost:3306/course_module_db?useSSL=false&serverTimezone=UTC";
     private static final String JDBC_USER = "root";
     private static final String JDBC_PASSWORD = "root";
- 
     public static final String UPLOAD_FILES_DIRECTORY = "C:\\AcelAlBastoniIntalioTaskMohamedAbdelhamid\\";
     
 
