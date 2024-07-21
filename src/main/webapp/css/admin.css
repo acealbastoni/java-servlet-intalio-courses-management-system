@@ -1,53 +1,70 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    background-color: #121212; /* Very dark background */
+    color: #e0e0e0; /* Light text color for contrast */
+    margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+    padding: 20px;
 }
 
-h2, h3, h4 {
-    color: #333;
+.sidebar {
+    background-color: #1f1f1f; /* Slightly lighter dark background */
+    border-right: 1px solid #444; /* Dark border color */
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+
+.main-content {
+    background-color: #1f1f1f; /* Slightly lighter dark background */
+    padding: 20px;
+    border: 1px solid #444; /* Darker border color */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+
+h1, h2 {
+    color: #f0f0f0; /* Light text color */
+    margin-top: 0;
 }
 
 p {
-    text-align: center;
-    color: #666;
+    color: #b0b0b0; /* Slightly muted light text color */
+    margin-top: 0;
 }
 
-.form-container {
-    background: #fff;
+.form-section {
+    background: #2a2a2a; /* Dark background for forms */
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #444; /* Dark border color */
     border-radius: 5px;
     margin-bottom: 20px;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 label {
     display: block;
     margin: 10px 0 5px;
     font-weight: bold;
+    color: #e0e0e0; /* Light text color */
 }
 
 input[type="text"], textarea, select {
     width: calc(100% - 20px);
     padding: 10px;
     margin: 5px 0 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #444; /* Dark border color */
     border-radius: 5px;
-    box-sizing: border-box;
+    background: #121212; /* Match dark background */
+    color: #e0e0e0; /* Light text color */
 }
 
 input[type="submit"] {
-    background: #5cb85c;
+    background: #4CAF50; /* Classic green button color */
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -55,35 +72,62 @@ input[type="submit"] {
     cursor: pointer;
     display: block;
     width: 100%;
-    box-sizing: border-box;
+    text-align: center;
 }
 
 input[type="submit"]:hover {
-    background: #4cae4c;
+    background: #45a049; /* Slightly darker green on hover */
 }
 
 .courses-container {
-    margin-top: 20px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: #2a2a2a; /* Dark background for course list */
+    border: 1px solid #444; /* Darker border color */
+    border-radius: 8px;
+    padding: 20px;
 }
 
 .course {
-    background: #fff;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    background-color: #1f1f1f; /* Slightly lighter dark background */
+    border: 1px solid #444; /* Darker border color */
+    border-radius: 8px;
+}
+
+.course h3 {
+    color: #f0f0f0; /* Light text color */
+    margin-top: 0;
 }
 
 .modules {
     margin-top: 10px;
 }
 
-.modules p {
-    margin: 5px 0;
-    padding-left: 10px;
-    border-left: 2px solid #ccc;
+.module {
+    padding: 10px;
+    background-color: #121212; /* Dark background for modules */
+    border: 1px solid #444; /* Darker border color */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.module span {
+    color: #e0e0e0; /* Light text color */
+}
+
+.download-btn {
+    padding: 8px 12px;
+    background-color: #007bff; /* Classic blue button color */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.download-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
 }

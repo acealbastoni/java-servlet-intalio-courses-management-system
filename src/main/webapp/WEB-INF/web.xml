@@ -59,5 +59,10 @@
 		<servlet-name>DownloadPDF</servlet-name>
 		<servlet-class>com.coursemanagement.web.DownloadPDF</servlet-class>
 	</servlet>
+
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
 		
 </web-app>
